@@ -27,6 +27,12 @@ class product(models.Model):
     category = models.ForeignKey(category, on_delete=models.CASCADE)
     description = models.TextField(max_length=255, default='', blank=True, null=True )
     image = models.ImageField(upload_to='uploads/product')
+    # add sale stuff
+    Is_sale = models.BooleanField(default=False)
+    sale_price = models.FloatField()
+    # sale_start = models.DateTimeField(default=datetime.datetime.now)
+    # sale_end = models.DateTimeField(default=datetime.datetime.now)
+
 
     def __str__(self):
         return self.name
