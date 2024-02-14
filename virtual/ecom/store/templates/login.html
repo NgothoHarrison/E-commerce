@@ -18,7 +18,7 @@
         <div class="col-lg-8">
             
             <form method="POST" action= {% url 'login' %}>
-                
+
                 {% csrf_token %}
                 {% if messages %}
                     {% for message in messages %}
@@ -37,8 +37,7 @@
                   <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
                 
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  
                 </div>
                 <button type="submit" class="btn btn-secondary">Login</button>
               </form>
