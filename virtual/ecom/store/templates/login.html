@@ -10,16 +10,46 @@
         </div>
     </div>
 </header>
-
+<br>
+    <br>
+    <br>
 <div class="container ">
     <div class="row">
-        <div class="col-lg-6">
-            <h2 class="text-center">LOGIN</h2>
-            <p class="text-center">Our mission is to provide the best quality products to our customers at the best prices. We are committed to providing the best customer service and we are always looking for ways to improve our services.</p>
+        <div class="col-lg-8">
+            
+            <form method="POST" action= {% url 'login' %}>
+                
+                {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input type="text" class="form-control" name="username" placeholder="Enter Username">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-secondary">Login</button>
+              </form>
+
         </div>
         
     </div>
     </center>
     </div>
+    <br>
+    <br>
+    <br>
             
 {% endblock %}
