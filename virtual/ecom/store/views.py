@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import *
+from .models import Product
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -7,9 +7,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm
 
-# Create your views here.
+# products page
+def product(request, pk):
+    product = Product.objects.get(id=pk)
+    return render(request, 'product.html', {'product': product})
+
 def home(request):
-    products = product.objects.all()
+    products = Product.objects.all()
     return render(request, 'home.html', {'products': products})
 
 def about(request):
@@ -55,7 +59,3 @@ def register_user(request):
     else:
         return render(request, 'register.html', {'form': form})
        
-
-def product(request, pk):
-    product = product.object.get(id=pk)
-    return render(request, 'product.html', {'product': product})

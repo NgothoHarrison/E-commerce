@@ -20,7 +20,7 @@ class customer(models.Model):
 
     def __str__(self):
         return self.name 
-class product(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.FloatField()
@@ -28,7 +28,7 @@ class product(models.Model):
     description = models.TextField(max_length=255, default='', blank=True, null=True )
     image = models.ImageField(upload_to='uploads/product')
     # add sale stuff
-    Is_sale = models.BooleanField(default=False)
+    is_sale = models.BooleanField(default=False)
     sale_price = models.FloatField()
     # sale_start = models.DateTimeField(default=datetime.datetime.now)
     # sale_end = models.DateTimeField(default=datetime.datetime.now)
@@ -38,7 +38,7 @@ class product(models.Model):
         return self.name
 
 class order(models.Model):
-    product = models.ForeignKey(product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(customer, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     price = models.FloatField()
