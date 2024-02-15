@@ -19,7 +19,8 @@ def category(request, foo):
     try:
         category = Category.objects.get(name=foo)
         products = Product.objects.filter(category=category)
-        return render(request, 'category.html', {'products': products}, {'category': category})
+        context = {'products': products, 'category': category}
+        return render(request, 'category.html', context)
     except:
         messages.success(request, "Category doesn't exist")
         return redirect('home')
