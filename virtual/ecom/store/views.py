@@ -54,12 +54,8 @@ def register_user(request):
             return redirect('register')
     else:
         return render(request, 'register.html', {'form': form})
-        # username = request.POST['username']
-        # email = request.POST['email']
-        # password = request.POST['password']
-        # user = User.objects.create_user(username, email, password)
-        # user.save()
-        # messages.success(request, "You have registered successfully")
-        # return redirect('home')
+       
 
-    # return render(request, 'register.html', {})
+def product(request, pk):
+    product = product.object.get(id=pk)
+    return render(request, 'product.html', {'product': product})
