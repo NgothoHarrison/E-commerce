@@ -16,7 +16,8 @@
               <h5 class="card-title">{{ product.name}}</h5>
               <p class="card-text">{{product.description}}</p>
 
-              {{ if product.is_sale}}
+              {%if product.is_sale %}
+              <p > <b>Hot Deals</b><p>
               <strike>
                 Ksh {{product.price}}
                 </strike>
@@ -24,10 +25,11 @@
                 Ksh {{product.sale_price}}
 
 
-              {{else}}
-              {{product.price}}
+              {%else%}
 
-              {{endif}}
+                Ksh {{product.price}}
+
+              {%endif%}
 
               <br><br><br><br>
 

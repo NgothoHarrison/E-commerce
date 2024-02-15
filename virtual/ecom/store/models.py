@@ -6,7 +6,7 @@ import datetime
 
 # Create your models here.
 
-class category(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
@@ -24,7 +24,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.FloatField()
-    category = models.ForeignKey(category, on_delete=models.CASCADE)
+    Category = models.ForeignKey(Category, on_delete=models.CASCADE)
     description = models.TextField(max_length=255, default='', blank=True, null=True )
     image = models.ImageField(upload_to='uploads/product')
     # add sale stuff
