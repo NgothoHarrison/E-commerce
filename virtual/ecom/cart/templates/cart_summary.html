@@ -53,7 +53,25 @@
                                                 {% else %}
                                                 Ksh {{ product.price }}
                                                 {% endif %}
-                                                <br><br><br><br>
+                                                <br><br>
+
+                                                <div class="row justify-content-left">
+                                                    <div class="col-md-2">Quantity: 
+                                                      
+                                                          <select class="form-select" class="qty-cart" >
+                                                            <option value="1">
+
+                                                            </option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                          </select>
+                                                     </div>
+                                                  </div>
+                                                
+                                                <br><br>
                                                 <a href="{% url 'home' %}" class="btn btn-secondary">HOME</a>
                                             </div>
                                         </div>
