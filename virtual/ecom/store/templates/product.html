@@ -31,7 +31,22 @@
 
               {%endif%}
 
-              <br><br><br><br>
+
+              <br><br>
+             <div class="row justify-content-left">
+              <div class="col-md-2">Quantity: 
+                
+                    <select class="form-select" class="qty-cart" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      {% comment %} <option value="3">Three</option> {% endcomment %}
+                    </select>
+               </div>
+            </div>
+              <br><br><br>
 
               <a href="{% url 'home'%}" class="btn btn-secondary"> HOME <a>
 
@@ -63,6 +78,7 @@
       url: '{% url 'cart_add' %}', // this is the url where the data will be posted
       data: {
         'product_id': $('#add-cart').val(),
+        'quantity': $('#qty-cart option:selected').text(),
         'csrfmiddlewaretoken': '{{csrf_token}}', 
         action: 'post',
       },
