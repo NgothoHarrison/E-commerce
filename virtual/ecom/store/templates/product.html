@@ -35,6 +35,10 @@
 
               <a href="{% url 'home'%}" class="btn btn-secondary"> HOME <a>
 
+              <button type="button" value='{{product.id}}' class="btn btn-primary" id='add-cart' data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add to Cart
+              </button>
+
          
 
             </div>
@@ -51,5 +55,30 @@
 <br>
 <br>
 
+<script>
+  $(document).on('click', '#add-cart', function(e){
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "cart_add" %}', // this is the url where the data will be posted
+      data: {
+        'product_id': $('#add-cart').val(),
+              'csrfmiddlewaretoken': '{{csrf_token}}', 
+              action: 'post',
+      },
+
+      success: function(json){
+        console.log(json); // log the returned json to the console
+      },
+
+      error: function(xhr, errmsg, err){
+        
+      }
+
+    });
+
+    })
+    
+</script>
             
 {% endblock %}
