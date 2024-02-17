@@ -12,6 +12,68 @@
                 </div>
             </div>
         </header>
+        <style>
+            /* Adjust the card body to align text to the right */
+            .card-body {
+                text-align: right;
+            }
+    
+            /* Adjust the card image to be aligned to the left */
+            .card-img {
+                float: left;
+                margin-right: 10px; /* Adjust spacing between image and text */
+            }
+        </style>
+<br> <br>
+<br> <br>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-lg-8'>
+                    <div class='card wish-list mb-3'>
+                        <div class='card-body'>
+                            <h5 class='mb-4'>
+                                <br>
+
+                                {% if cart_products %}
+
+                                    {% for product in cart_products %}
+                                <div class="card mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ product.name }}</h5>
+                                                <p class="card-text">{{ product.description }}</p>
+                                                {% if product.is_sale %}
+                                                <p><b>Hot Deals</b></p>
+                                                <strike>Ksh {{ product.price }}</strike><br>
+                                                Ksh {{ product.sale_price }}
+                                                {% else %}
+                                                Ksh {{ product.price }}
+                                                {% endif %}
+                                                <br><br><br><br>
+                                                <a href="{% url 'home' %}" class="btn btn-secondary">HOME</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                    {% endfor %}
+                                {% else %}
+                                <h5> Your cart is empty</h5>
+                                    <br>
+                                    <br>
+                                    <br>
+                                {% endif %}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
 
         <br>

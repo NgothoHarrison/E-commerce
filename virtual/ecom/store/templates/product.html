@@ -35,7 +35,7 @@
 
               <a href="{% url 'home'%}" class="btn btn-secondary"> HOME <a>
 
-              <button type="button" value='{{product.id}}' class="btn btn-primary" id='add-cart' data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" value='{{product.id}}' class="btn btn-primary" id='add-cart' >
                 Add to Cart
               </button>
 
@@ -60,15 +60,17 @@
     e.preventDefault();
     $.ajax({
       type: 'POST',
-      url: '{% url "cart_add" %}', // this is the url where the data will be posted
+      url: '{% url 'cart_add' %}', // this is the url where the data will be posted
       data: {
         'product_id': $('#add-cart').val(),
-              'csrfmiddlewaretoken': '{{csrf_token}}', 
-              action: 'post',
+        'csrfmiddlewaretoken': '{{csrf_token}}', 
+        action: 'post',
       },
 
       success: function(json){
-        document.getElementById('cart_quantity').textContent = json.Qty ;
+        //console.log(json);
+       // alert('Product added to cart');
+        document.getElementById('cart_quantity').textContent = json.qty
       },
 
       error: function(xhr, errmsg, err){
