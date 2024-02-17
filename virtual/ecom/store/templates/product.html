@@ -68,7 +68,7 @@
       },
 
       success: function(json){
-        console.log(json); // log the returned json to the console
+        document.getElementById('cart_quantity').textContent = json.Qty ;
       },
 
       error: function(xhr, errmsg, err){
