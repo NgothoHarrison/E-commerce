@@ -26,8 +26,11 @@ class Cart():
         # if update_quantity:
         #     self.cart[product_id]['quantity'] = quantity
         else:
+            self.cart[product_id]= int(product_qty) # add the quantity
             # self.cart[product_id]= { 'price ': str(product.price)}
-            self.cart[product_id]= int(product_qty)
+           
+            # self.cart[product_id] = {'price': str(product.price)}
+
         self.session.modified = True
 
 
@@ -40,7 +43,6 @@ class Cart():
         product_ids = self.cart.keys() # Get the product ids
         # use ids to get products in database model
         products = Product.objects.filter(id__in=product_ids)
-
         return products
     
     def get_quants(self):

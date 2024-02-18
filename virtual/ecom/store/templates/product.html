@@ -27,30 +27,31 @@
 
               {%else%}
 
-                Ksh {{product.price}}
+                Ksh {{product.price}} 
+
 
               {%endif%}
 
 
-              <br><br>
-             <div class="row justify-content-left">
-              <div class="col-md-2">Quantity: 
-                
-                    <select class="form-select" class="qty-cart" >
+              <br><br> <br>
+              <div class="row justify-content-left">
+              <div class="col-md-2">Quantity: </div>
+                <div class="col-md-2">
+                    <select class="form-select" id="qty-cart" >
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
                       <option value="5">5</option>
-                      {% comment %} <option value="3">Three</option> {% endcomment %}
+                      
                     </select>
                </div>
             </div>
-              <br><br><br>
+              <br><br>
 
               <a href="{% url 'home'%}" class="btn btn-secondary"> HOME <a>
 
-              <button type="button" value='{{product.id}}' class="btn btn-primary" id='add-cart' >
+              <button type="button" value="{{product.id}}" class="btn btn-primary" id="add-cart" >
                 Add to Cart
               </button>
 
@@ -74,28 +75,33 @@
   $(document).on('click', '#add-cart', function(e){
     e.preventDefault();
     $.ajax({
+
       type: 'POST',
-      url: '{% url 'cart_add' %}', // this is the url where the data will be posted
+      url: '{% url 'cart_add' %}',
       data: {
-        'product_id': $('#add-cart').val(),
-        'quantity': $('#qty-cart option:selected').text(),
-        'csrfmiddlewaretoken': '{{csrf_token}}', 
-        action: 'post',
+        product_id: $('#add-cart').val(),
+        product_qty: $('#add-cart option:selected').text(),
+        csrfmiddlewaretoken: '{{csrf_token}}',
+        action: 'post'
       },
 
       success: function(json){
-        //console.log(json);
-       // alert('Product added to cart');
-        document.getElementById('cart_quantity').textContent = json.qty
+        alert('Item added to cart');
+        console.log(json);
+        document.getElementById('cart_quantity').textContent = json.qty;
       },
 
       error: function(xhr, errmsg, err){
-        
+        console.log(xhr.status + ":" + xhr.responseText);
       }
+        
+    
 
     });
 
-    })
+
+
+  });
     
 </script>
             

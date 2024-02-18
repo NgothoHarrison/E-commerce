@@ -24,7 +24,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.FloatField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    description = models.TextField(max_length=255, default='', blank=True, null=True )
+    description = models.TextField(max_length=500, default='', blank=True, null=True )
     image = models.ImageField(upload_to='uploads/product')
     # add sale stuff
     is_sale = models.BooleanField(default=False)
