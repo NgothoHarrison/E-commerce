@@ -35,7 +35,7 @@ class Cart():
 
 
     def __len__(self):
-        return len(self.cart) 
+        return len(self.cart)
         # return sum(item['quantity'] for item in self.cart.values())
     
 
