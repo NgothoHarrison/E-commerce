@@ -14,7 +14,6 @@ def cart_summary(request):
 
 
 
-
 def cart_add(request):
 	# Get the cart
 	cart = Cart(request)
@@ -38,8 +37,7 @@ def cart_add(request):
 		response = JsonResponse({'qty': cart_quantity})
 		messages.success(request, ("Product Added To Cart..."))
 		return response
-
-
+	
 # def cart_delete(request):
 #     return redirect('cart_summary')
 
