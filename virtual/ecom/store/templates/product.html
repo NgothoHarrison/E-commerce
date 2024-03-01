@@ -77,10 +77,10 @@
     $.ajax({
 
       type: 'POST',
-      url: '{% url 'cart_update' %}',
+      url: '{% url 'cart_add' %}',
       data: {
         product_id: $('#add-cart').val(),
-        product_qty: $('#add-cart option:selected').text(),
+        product_qty: $('#qty-cart option:selected').text(),
         csrfmiddlewaretoken: '{{csrf_token}}',
         action: 'post'
       },

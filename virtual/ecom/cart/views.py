@@ -38,8 +38,23 @@ def cart_add(request):
 		messages.success(request, ("Product Added To Cart..."))
 		return response
 	
+
+def cart_update(request):
+	cart = Cart(request)
+	if request.POST.get('action') == 'post':
+		# get stuff
+		product_id = int(request.POST.get('product_id'))
+		product_qty = int(request.POST.get('product_qty'))
+		# update cart
+		cart.update(product=product_id, quantity=product_qty)
+		# get cart quantity
+		cart_qty = cart.__len__()
+		# return response
+		response = JsonResponse({'qty': cart_qty})
+		return response
+	
+	
+
 # def cart_delete(request):
 #     return redirect('cart_summary')
 
-# def cart_update(request):
-#     return redirect('cart_summary')
