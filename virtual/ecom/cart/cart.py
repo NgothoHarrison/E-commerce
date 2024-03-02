@@ -60,9 +60,8 @@ class Cart():
         product_id = str(product)
         if product_id in self.cart:
             del self.cart[product_id]
-            self.session.modified = True
-            
 
+        self.session.modified = True
 
 
 

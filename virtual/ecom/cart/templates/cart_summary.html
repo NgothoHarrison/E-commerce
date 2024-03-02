@@ -127,15 +127,34 @@ $(document).on('click', '.update-cart', function(e){
 
 })
 
-//delete product
-$(document).on('click', '.delete-product', function(e)){
-
+// delete product from cart
+$(document).on('click', '.delete-product', function(e){
   e.preventDefault();
-  var productid = $(this).data('index');
-  
+  // grab the product id
+   
+
+  $.ajax({
+  type: 'POST',
+  url: '{% url 'cart_delete' %}',
+  data: {
+    product_id: $(this).data('index'),
+    csrfmiddlewaretoken: '{{ csrf_token }}',
+    action: 'post'
+  },
+  success: function(json){
+      //console.log(json)
+      //document.getElementById("cart_quantity").textContent = json.qty
+      location.reload();
+  },
+
+  error: function(xhr, errmsg, err){
+
+  }
 
 
-}
+  });
+
+})
 
 </script>
 
