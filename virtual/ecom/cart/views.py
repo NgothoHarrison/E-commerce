@@ -14,6 +14,9 @@ def cart_summary(request):
 
 	return render(request, "cart_summary.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals})
 
+def category_summary(request):
+	return render(request, "category_summary.html", {})
+
 
 
 def cart_add(request):
