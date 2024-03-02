@@ -38,15 +38,15 @@
 
                 <!-- Product price-->
                 <strike>
-                ${{ product.price }}
+                Ksh {{ product.price }}
                 </strike>
                 &nbsp;
-                ${{ product.sale_price }}
+                Ksh {{ product.sale_price }}
 
 
 
         {% else %}
-            ${{ product.price }}
+            Ksh {{ product.price }}
             
         {% endif %}
             <br/><br/>
@@ -81,10 +81,10 @@
   </div>
 </div>
 
-
+<br>
 
         	{% endfor %}
-            <h3>Total: ${{ totals }}</h3>
+            <h3>Total: Ksh{{ totals }}</h3>
 
             <br/><br/><br/>
         	{% else %}

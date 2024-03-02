@@ -63,6 +63,22 @@ class Cart():
 
         self.session.modified = True
 
+    def cart_total(self):
+        product_ids = self.cart.keys() # Get the product ids
+        # use ids to get products in database model
+        products = Product.objects.filter(id__in=product_ids)
+
+        quantities = self.cart.values()
+        total = 0 # Set the total to zero
+
+        for key, value in quantities.items():
+            key = int(key)
+            for product in products:
+                if product.id == key:
+                    total = total + (product.price * value)
+
+        return total
+
 
 
     # def save(self):
