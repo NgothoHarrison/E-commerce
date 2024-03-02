@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .cart import Cart
-from store.models import Product
+from store.models import Product, Category
 from django.http import JsonResponse
 from django.contrib import messages
 
@@ -15,7 +15,9 @@ def cart_summary(request):
 	return render(request, "cart_summary.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals})
 
 def category_summary(request):
-	return render(request, "category_summary.html", {})
+	categories = Category.objects.all()
+
+	return render(request, "category_summary.html", {"categories":categories})
 
 
 
