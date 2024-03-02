@@ -68,16 +68,18 @@ class Cart():
         # use ids to get products in database model
         products = Product.objects.filter(id__in=product_ids)
 
-        quantities = self.cart.values()
+        quantities = self.cart 
         total = 0 # Set the total to zero
 
         for key, value in quantities.items():
             key = int(key)
             for product in products:
                 if product.id == key:
-                    total = total + (product.price * value)
+                    total = total + (product.price * int(value))
 
-        return total
+        formatted_total = "{:,.2f}".format(total)
+
+        return formatted_total
 
 
 
