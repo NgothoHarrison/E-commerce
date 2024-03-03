@@ -81,7 +81,7 @@ def update_user(request):
             user_form.save()
 
             login(request, current_user)
-            messages.success(request, "User details updated")
+            messages.success(request, "User details updated Successfully")
             return redirect('home')
         
         return render(request, "update_user.html", {'user_form': user_form})
