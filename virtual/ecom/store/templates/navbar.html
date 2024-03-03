@@ -10,6 +10,19 @@
 
                 {% if user.is_authenticated %}
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% comment %} <li><a class="dropdown-item" href=" # "> Profile </a></li> {% endcomment %}
+                        <li><hr class="dropdown-divider" /></li>
+                        
+                        {% comment %} You can use a for loop {% endcomment %}
+                        <li><a class="dropdown-item" href="{% url 'update_user'  %}">User</a></li>
+                        <li><a class="dropdown-item" href="{% url 'update_info'  %}">User Info</a></li>
+                        
+                    </ul>
+                </li>
+
                 <li class="nav-item"><a class="nav-link" href=" {% url 'update_user' %}">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href=" {% url 'logout' %}">Logout</a></li>
 

@@ -69,11 +69,12 @@ class ChangePasswordForm(SetPasswordForm):
 
 class UserInfoForm(forms.ModelForm):
 	phone = forms.CharField()
-    address1 = forms.TextField()
-    address2 = forms.TextField()
-    city = forms.CharField()
-    state = forms.CharField()
-    country = forms.CharField()
+	address1 = forms.TextField()
+	address2 = forms.TextField()
+	city = forms.CharField()
+	state = forms.CharField()
+	country = forms.CharField()
+	zip = forms.CharField()
 
 	class Meta:
 		model = Profile

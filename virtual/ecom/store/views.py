@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product, Category
+from .models import Product, Category, Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -112,3 +112,6 @@ def update_password(request):
     else:
         messages.success(request, "You Must Be Logged In To Update User Details")
         return redirect('home')
+
+def update_info(request):
+    pass
