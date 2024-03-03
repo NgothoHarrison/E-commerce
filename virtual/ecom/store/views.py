@@ -93,6 +93,12 @@ def update_password(request):
     if request.user.is_authenticated:
         current_user = request.user
 
+        if request.method == 'POST':
+            pass
+        else:
+            form = SetPasswordForm(current_user)
 
-
-    return render(request, "update_password.html", {})
+        return render(request, "update_password.html", {'form':form})
+    else:
+        messages.success(request, "You Must Be Logged In To Update User Details")
+        return redirect('home')
