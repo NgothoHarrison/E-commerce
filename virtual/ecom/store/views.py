@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm, UpdateUserProfile, ChangePasswordForm, UserInfoForm
+from django.db.models import Q # for search multiple fields
 
 # products page
 def product(request, pk):
@@ -128,3 +129,14 @@ def update_info(request):
     else:
         messages.success(request, "You Must Be Logged In To Update User Details")
         return redirect('home')
+    
+def search(request):
+    # Determine if the form is filled
+    if request.method == "POST":
+        searched = request.POST['searched']
+        # Query the product
+        searched = Product.objects.filter(name__icontains=searched)
+        return render(request, "search.html", {'searched': searched})
+    
+    else:
+        return render(request, "search.html", {})
