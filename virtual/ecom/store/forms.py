@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django import forms
 
 class SignUpForm(UserCreationForm):
@@ -48,4 +48,7 @@ class UpdateUserProfile(UserChangeForm):
 		self.fields['username'].label = ''
 		self.fields['username'].help_text = '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'
 
-	
+class ChangePassword(SetPasswordForm):
+	class Meta:
+		model = User
+		fields = ['new_password1', 'new_password2']

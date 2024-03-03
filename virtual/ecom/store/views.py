@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .forms import SignUpForm, UpdateUserProfile
+from .forms import SignUpForm, UpdateUserProfile, SetPasswordForm
 
 # products page
 def product(request, pk):
@@ -88,3 +88,11 @@ def update_user(request):
     else:
         messages.success(request, "You Must Be Logged In To Update User Details")
         return redirect('home')
+
+def update_password(request):
+    if request.user.is_authenticated:
+        current_user = request.user
+
+
+
+    return render(request, "update_password.html", {})
