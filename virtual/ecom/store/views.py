@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .forms import SignUpForm, UpdateUserProfile, SetPasswordForm
+from .forms import SignUpForm, UpdateUserProfile, ChangePasswordForm
 
 # products page
 def product(request, pk):
@@ -94,9 +94,19 @@ def update_password(request):
         current_user = request.user
 
         if request.method == 'POST':
-            pass
+            form = ChangePasswordForm(current_user, request.POST)
+            # form validity
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Password updated successfully, Please login again")
+                return redirect('login')
+
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request, error)
+                    return redirect('update_password')
         else:
-            form = SetPasswordForm(current_user)
+            form = ChangePasswordForm(current_user)
 
         return render(request, "update_password.html", {'form':form})
     else:
