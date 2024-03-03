@@ -135,7 +135,7 @@ def search(request):
     if request.method == "POST":
         searched = request.POST['searched']
         # Query the product
-        searched = Product.objects.filter(name__icontains=searched)
+        searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched) | Q(price__icontains=searched)) # search multiple fields
         return render(request, "search.html", {'searched': searched})
     
     else:
