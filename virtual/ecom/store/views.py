@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm, UpdateUserProfile, ChangePasswordForm, UserInfoForm
 from django.db.models import Q # for search multiple fields
+import json
+from cart.cart import Cart
 
 # products page
 def product(request, pk):
@@ -40,6 +42,25 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            # shopping cart
+            current_user = Profile.objects.get(user__id=request.user.id)
+            # get the saved cart
+            saved_cart = current_user.old_cart 
+            # convert the cart back to dictionary from string
+            
+            if saved_cart:
+                # convert the string to dictionary using JSON
+                converted_cart = json.loads(saved_cart)
+                # get the cart
+                cart = Cart(request)
+                # loop through the dictionary and add the items to the cart
+                for key, value in converted_cart.items():
+                    # product = Product.objects.get(id=key)
+                    cart.db_add(product=key, quantity=value)
+
+
+
+
             messages.success(request, "You have been logged in")
             return redirect('home')
         else:
