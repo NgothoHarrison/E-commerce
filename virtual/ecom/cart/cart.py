@@ -68,12 +68,32 @@ class Cart():
         self.cart[product_id] = product_qty
         self.session.modified = True
 
+        # deal with logged in users
+        if self.request.user.is_authenticated:
+            # get the current user profile
+            current_user = Profile.objects.filter(user__id=self.request.user.id)
+            # Convert Json format to string
+            cartString = str(self.cart)
+            cartString = cartString.replace("'", "\"")
+            # save the new cart to Profile
+            current_user.update(old_cart=cartString)
+
     def delete(self, product):
         product_id = str(product)
         if product_id in self.cart:
             del self.cart[product_id]
 
         self.session.modified = True
+
+        # deal with logged in users
+        if self.request.user.is_authenticated:
+            # get the current user profile
+            current_user = Profile.objects.filter(user__id=self.request.user.id)
+            # Convert Json format to string
+            cartString = str(self.cart)
+            cartString = cartString.replace("'", "\"")
+            # save the new cart to Profile
+            current_user.update(old_cart=cartString)
 
     def cart_total(self):
         product_ids = self.cart.keys() # Get the product ids
