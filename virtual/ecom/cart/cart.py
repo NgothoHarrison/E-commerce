@@ -38,10 +38,12 @@ class Cart():
         # deal with logged in users
         if self.request.user.is_authenticated:
             # get the current user profile
-            profile = Profile.objects.filter(user__id=self.request.user.id)
+            current_user = Profile.objects.filter(user__id=self.request.user.id)
             # Convert Json format to string
             cartString = str(self.cart)
             cartString = cartString.replace("'", "\"")
+            # save the new cart to Profile
+            current_user.update(old_cart=cartString)
 
 
     def __len__(self):
