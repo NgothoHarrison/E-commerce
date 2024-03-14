@@ -2,14 +2,10 @@ from django import forms
 from .models import ShippingAddress
 
 class ShippingAddressForm(forms.ModelForm):
-    shipping_full_name = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone'}), required=True)
-
-
-
-    shipping_full_name = models.CharField(max_length=200, null=False)
-    shipping_email = models.EmailField(max_length=200, null=False)
-    shipping_address1 = models.CharField(max_length=200, null=False)
-    shipping_address2 = models.CharField(max_length=200, null=True, blank=True)
-    shipping_city = models.CharField(max_length=200, null=False)
-    pickup_point = models.CharField(max_length=200, null=False)
+    shipping_full_name = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Full name'}), required=True)
+    shipping_email = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'email'}), required=True)
+    shipping_address1 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'address1'}), required=True)
+    shipping_address2 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'address2'}), required=False)
+    shipping_city = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'city'}), required=True)
+    pickup_point = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Pickup point'}), required=True)
        
