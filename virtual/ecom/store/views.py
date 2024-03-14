@@ -6,6 +6,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm, UpdateUserProfile, ChangePasswordForm, UserInfoForm
+
+from payments.forms import ShippingAddressForm
+from payments.models import ShippingAddress
+
 from django.db.models import Q # for search multiple fields
 import json
 from cart.cart import Cart
@@ -57,8 +61,6 @@ def login_user(request):
                 for key, value in converted_cart.items():
                     # product = Product.objects.get(id=key)
                     cart.db_add(product=key, quantity=value)
-
-
 
 
             messages.success(request, "You have been logged in")
@@ -138,6 +140,7 @@ def update_password(request):
 def update_info(request):
     if request.user.is_authenticated:
         current_user = Profile.objects.get(user__id=request.user.id)
+        shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
         form = UserInfoForm(request.POST or None, instance=current_user)
 
         if form.is_valid():
@@ -146,7 +149,7 @@ def update_info(request):
             messages.success(request, "Your Info updated Successfully")
             return redirect('home')
         
-        return render(request, "update_info.html", {'form': form})
+        return render(request, "update_info.html", {'form': form}, {'shipping_form': shipping_form})
     else:
         messages.success(request, "You Must Be Logged In To Update User Details")
         return redirect('home')
