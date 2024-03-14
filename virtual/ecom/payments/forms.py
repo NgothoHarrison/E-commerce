@@ -13,4 +13,6 @@ class ShippingAddressForm(forms.ModelForm):
         model = ShippingAddress
         fields = ['shipping_full_name', 'shipping_email', 'shipping_address1', 'shipping_address2', 'shipping_city', 'pickup_point']
 
+        exclude = ['user']
+
     
