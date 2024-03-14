@@ -9,3 +9,8 @@ class ShippingAddressForm(forms.ModelForm):
     shipping_city = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'city'}), required=True)
     pickup_point = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Pickup point'}), required=True)
        
+    class Meta:
+        model = ShippingAddress
+        fields = ['shipping_full_name', 'shipping_email', 'shipping_address1', 'shipping_address2', 'shipping_city', 'pickup_point']
+
+    
